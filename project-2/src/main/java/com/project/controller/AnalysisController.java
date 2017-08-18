@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.project.mapper.ProjectMapper;
 
 @Controller
-public class HomeController {
+public class AnalysisController {
 	@Autowired
 	private ProjectMapper projectMapper;
 
