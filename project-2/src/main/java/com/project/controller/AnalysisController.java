@@ -11,8 +11,8 @@ public class AnalysisController {
 	@Autowired
 	private ProjectMapper projectMapper;
 
-	@RequestMapping("/")
+	@RequestMapping("/analysis")
 	public String view() {
-		return "main";
+		return "analysis";
 	}
 }
