@@ -105,10 +105,10 @@ html, body, h1, h2, h3, h4, h5, h6 {
 	border-color: #000000 !important
 }
 </style>
-<body>
+<body style="background-color: #e6e8ec">
 
 	<!-- Navbar -->
-	<div class="w3-top">
+	<section class="w3-top">
 		<div class="w3-bar w3-theme w3-top w3-left-align w3-large">
 			<a
 				class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
@@ -120,10 +120,10 @@ html, body, h1, h2, h3, h4, h5, h6 {
 			<a href="#"
 				class="w3-bar-item w3-button w3-hide-small w3-hover-white">멤버초대</a>
 		</div>
-	</div>
+	</section>
 
 	<!-- Sidebar -->
-	<nav
+	<section
 		class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left"
 		style="z-index: 3; width: 180px; margin-top: 43px;" id="mySidebar">
 		<a href="javascript:void(0)" onclick="w3_close()"
@@ -135,8 +135,36 @@ html, body, h1, h2, h3, h4, h5, h6 {
 		</h4>
 		<a class="w3-bar-item w3-button w3-hover-black" href="analysis">프로젝트</a>
 		<a class="w3-bar-item w3-button w3-hover-black" href="#">멤버</a>
-	</nav>
+	</section>
 
+	<section style="margin-left:220px; margin-right: 20px; width:80%; height: 100%;">
+		<section style="width:100%; height: 80px;"></section>
+		
+		<section style="width:100%; height: 100px; background-color: #ffffff">
+		</section>
+		
+		<section style="width:100%; height: 20px;"></section>
+		
+		<section style="width:100%; height: 100px; background-color: #ffffff">
+		</section>
+		
+		<section style="width:100%; height: 20px;"></section>
+		
+		<section style="width:100%; height: 450px; display: flex;">
+			<section style="width:32%; height: 100%; background-color: #ffffff">
+			</section>
+			<section style="width:2%; height: 100%;"></section>
+			<section style="width:32%; height: 100%; background-color: #ffffff">
+			</section>
+			<section style="width:2%; height: 100%;"></section>
+			<section style="width:32%; height: 100%; background-color: #ffffff">
+			</section>
+		</section>
+		
+		<section style="width:100%; height: 80px;"></section>
+		
+	</section>
+	
 
 
 </body>
