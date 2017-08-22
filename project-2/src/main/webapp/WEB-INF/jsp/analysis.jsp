@@ -143,13 +143,32 @@ html, body, h1, h2, h3, h4, h5, h6 {
 		<section style="width:100%; height: 100px; background-color: #ffffff">
 		</section>
 		
-		<section style="width:100%; height: 20px;"></section>
+		<section style="width:100%; height: 15px;"></section>
 		
+		<!-- 프로젝트 개요 -->
 		<section style="width:100%; height: 100px; background-color: #ffffff">
+			<section style="padding: 20px; width: 100%; height: 100%">
+				<section style="width:100%; height: 45%; display: flex;">
+					<section><strong>프로젝트 개요</strong></section>
+					<section style="width:120px;"></section>
+					<section><i class="fa fa-circle-o" style="color: rgb(39, 182, 186)"></i>완료됨  0% (0개 업무)</section>
+					<section style="width:80px;"></section>
+					<section><i class="fa fa-circle-o" style="color: rgb(233, 94, 81)"></i>마감일 지남  0% (0개 업무)</section>
+					<section style="width:80px;"></section>
+					<section><i class="fa fa-circle-o" style="color: rgb(255, 176, 36)"></i>계획됨  0% (0개 업무)</section>
+				</section>
+				<section style="width:100%; height: 10%"></section>
+				<section style="width:100%; height: 45%">
+					<div class="w3-cell-row">
+						<div class="w3-container w3-cell" style="width:100%; background-color: #d4d6db"><p style="height:100%;"></p></div>
+					</div>
+				</section>
+			</section>
 		</section>
 		
-		<section style="width:100%; height: 20px;"></section>
+		<section style="width:100%; height: 15px;"></section>
 		
+		<!-- 파이차트 자리 -->
 		<section style="width:100%; height: 450px; display: flex;">
 			<section style="width:32%; height: 100%; background-color: #ffffff">
 			</section>
@@ -161,7 +180,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 			</section>
 		</section>
 		
-		<section style="width:100%; height: 80px;"></section>
+		<section style="width:100%; height: 50px;"></section>
 		
 	</section>
 	
