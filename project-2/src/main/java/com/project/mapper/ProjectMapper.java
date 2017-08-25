@@ -17,7 +17,7 @@ public interface ProjectMapper {
     public void fileInsert(ProjectVO project)throws Exception;
     
     //파일 글목록
-    public List<ProjectVO> ProjectList2()throws Exception;
+    public List<ProjectVO> FileList()throws Exception;
     
     //파일 글 상세보기
     public ProjectVO fileView(int fileNo)throws Exception;

@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         (#{fileNo},#{fileName},#{fileWriter},now())
     </insert>	
  
-  <select id="ProjectList2" resultType="com.project.domain.ProjectVO">
+  <select id="FileList" resultType="com.project.domain.ProjectVO">
         select * from file_info
     </select>
     
