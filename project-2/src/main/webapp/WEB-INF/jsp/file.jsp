@@ -21,6 +21,7 @@
             <th>작성자</th>
             <th>작성날짜</th>
             <th>조회수</th>
+            <th>gg</th>
         </tr>
         <%-- <c:forEach var="zz" items="${list}">
         <tr>
