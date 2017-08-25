@@ -135,6 +135,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
 		</h4>
 		<a class="w3-bar-item w3-button w3-hover-black" href="analysis">프로젝트</a>
 		<a class="w3-bar-item w3-button w3-hover-black" href="#">멤버</a>
+		<a class="w3-bar-item w3-button w3-hover-black" href="file">파일</a>
 	</nav>
 
 
