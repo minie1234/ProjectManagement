@@ -11,6 +11,12 @@ public class ProjectVO {
 	private Date startDate;
 	private Date endDate;
 	private String state;
+	
+	private int fileNo;
+	private String fileName;
+	private String fileWriter;
+	private Date fileDate;
+	
 
 	public int getNo() {
 		return no;
@@ -75,5 +81,40 @@ public class ProjectVO {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
+	public int getFileNo() {
+		return fileNo;
+	}
+
+	public void setFileNo(int fileNo) {
+		this.fileNo = fileNo;
+	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
+	public String getFileWriter() {
+		return fileWriter;
+	}
+
+	public void setFileWriter(String fileWriter) {
+		this.fileWriter = fileWriter;
+	}
+	
+	public Date getFileDate() {
+		return fileDate;
+	}
+
+	public void setFileDate(Date fileDate) {
+		this.fileDate = fileDate;
+	}
+	
+	
+	
 
 }
