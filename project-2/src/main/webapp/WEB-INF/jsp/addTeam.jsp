@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<input type="submit" value="팀 추가하기"/>
 task 페이지!!!
 </body>
 </html>

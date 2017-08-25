@@ -8,6 +8,11 @@ public class TaskController {
 	
 	@RequestMapping("/task")
 	public String taskview() {
-		return "task";
+		return "task/addTeam";
+	}
+	
+	@RequestMapping("/popup")
+	public String taskpopup() {
+		return "task/popup";
 	}
 }
