@@ -11,9 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(1,#{team},#{task},1,1,now(),now(),#{state})
 	</insert>
 
-	<select id="ProjectList" resultType="com.project.domain.ProjectVO">
+	<!-- <select id="ProjectList" resultType="com.project.domain.ProjectVO">
 		select * from test
-	</select>
+	</select> -->
 	
 	<insert id="fileInsert" parameterType="com.project.domain.ProjectVO">
         insert into file_info
@@ -21,14 +21,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         (#{fileNo},#{fileName},#{fileWriter},now())
     </insert>	
  
-  <select id="FileList" resultType="com.project.domain.ProjectVO">
+  <select id="fileList" resultType="com.project.domain.ProjectVO">
         select * from file_info
     </select>
     
     <select id="fileView" parameterType="int" resultType="com.project.domain.ProjectVO">
         select * from file_info where fileNo = #{fileNo}
     </select>
-
+    
+    <update id="fileUpdate" parameterType="com.project.domain.ProjectVO">
+        update file_info set fileName = #{fileName}, fileWriter = #{fileWriter} where fileNo = #{fileNo}
+    </update>
+    
+    <delete id="fileDelete" parameterType="int">
+        delete from file_info where fileNo= #{fileNo}
+    </delete>
 
 
 

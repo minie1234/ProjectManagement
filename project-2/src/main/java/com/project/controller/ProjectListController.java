@@ -16,7 +16,7 @@ public class ProjectListController {
 
 	@RequestMapping("/project")
 	public List<ProjectVO> project() throws Exception {
-		List<ProjectVO> project = projectMapper.ProjectList();
+		List<ProjectVO> project = projectMapper.fileList();
 		return project;
 	}
 

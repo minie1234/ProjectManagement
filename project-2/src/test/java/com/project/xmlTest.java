@@ -27,12 +27,10 @@ public class xmlTest {
 
 		ProjectVO vo = new ProjectVO();
 
-		vo.setTask("task입니다.");
-		vo.setTeam("team입니다.");
-		vo.setState("state입니다.");
-	
+		vo.setFileName("abc");
+		vo.setFileWriter("abc");
 
-		mapper.ProjectInsert(vo);
+		mapper.fileInsert(vo);
 
 	}
 

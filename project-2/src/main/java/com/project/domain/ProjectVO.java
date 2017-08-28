@@ -82,6 +82,8 @@ public class ProjectVO {
 		this.state = state;
 	}
 	
+	
+	
 	public int getFileNo() {
 		return fileNo;
 	}
