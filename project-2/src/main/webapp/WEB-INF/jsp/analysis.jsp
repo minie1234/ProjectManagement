@@ -17,11 +17,14 @@
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
+	  	todoListCompleated = Number("${fn:length(todoListCompleted)}");
+    	todoListNotCompleted = Number("${fn:length(todoListNotCompleted)}");
+    	todoListExpired = Number("${fn:length(todoListExpired)}");
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Task', 'count'],
+          ['완료됨', todoListCompleated],
+          ['마감일 지남', todoListNotCompleted],
+          ['계획됨', todoListExpired],
         ]);
 
         var options = {
@@ -179,11 +182,14 @@ html, body, h1, h2, h3, h4, h5, h6 {
 				<section style="width:100%; height: 45%; display: flex;">
 					<div><strong>프로젝트 개요</strong></div>
 					<div style="width:120px;"></div>
-					<div><i class="fa fa-circle-o" style="color: rgb(39, 182, 186); margin-right: 5px"></i>완료됨  0% (0개 업무)</div>
+					<div><i class="fa fa-circle-o" style="color: rgb(39, 182, 186); margin-right: 5px"></i>
+					완료됨 ${fn:length(todoListCompleted)/todoListTotalSize * 100}% (${fn:length(todoListCompleted)}개 업무)</div>
 					<div style="width:80px;"></div>
-					<div><i class="fa fa-circle-o" style="color: rgb(233, 94, 81); margin-right: 5px"></i>마감일 지남  0% (0개 업무)</div>
+					<div><i class="fa fa-circle-o" style="color: rgb(233, 94, 81); margin-right: 5px"></i>
+					마감일 지남  ${fn:length(todoListNotCompleted)/todoListTotalSize * 100}% (${fn:length(todoListNotCompleted)}개 업무)</div>
 					<div style="width:80px;"></div>
-					<div><i class="fa fa-circle-o" style="color: rgb(255, 176, 36); margin-right: 5px"></i>계획됨  0% (0개 업무)</div>
+					<div><i class="fa fa-circle-o" style="color: rgb(255, 176, 36); margin-right: 5px"></i>
+					계획됨  ${fn:length(todoListExpired)/todoListTotalSize * 100}% (${fn:length(todoListExpired)}개 업무)</div>
 				</section>
 				<section style="width:100%; height: 10%"></section>
 				<section style="width:100%; height: 45%">
@@ -224,11 +230,14 @@ html, body, h1, h2, h3, h4, h5, h6 {
 					</div>
 					<div>
 						<div style="height: 40px"></div>
-    					<div><i class="fa fa-circle-o" style="color: rgb(39, 182, 186); margin-right: 5px"></i>완료됨  0% (0개 업무)</div>
+    					<div><i class="fa fa-circle-o" style="color: rgb(39, 182, 186); margin-right: 5px"></i>
+						완료됨  ${fn:length(todoListCompleted)/todoListTotalSize * 100}% (${fn:length(todoListCompleted)}개 업무)</div>
 						<div style="height: 15px"></div>
-						<div><i class="fa fa-circle-o" style="color: rgb(233, 94, 81); margin-right: 5px"></i>마감일 지남  0% (0개 업무)</div>
+						<div><i class="fa fa-circle-o" style="color: rgb(233, 94, 81); margin-right: 5px"></i>
+						마감일 지남  ${fn:length(todoListNotCompleted)/todoListTotalSize * 100}% (${fn:length(todoListNotCompleted)}개 업무)</div>
 						<div style="height: 15px"></div>
-						<div><i class="fa fa-circle-o" style="color: rgb(255, 176, 36); margin-right: 5px"></i>계획됨  0% (0개 업무)</div>
+						<div><i class="fa fa-circle-o" style="color: rgb(255, 176, 36); margin-right: 5px"></i>
+						계획됨  ${fn:length(todoListExpired)/todoListTotalSize * 100}% (${fn:length(todoListExpired)}개 업무)</div>
     				</div>
 				</section>
 			</section>
