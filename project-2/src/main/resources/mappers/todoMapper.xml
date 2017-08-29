@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.project.mapper.TodoMapper">
+
+	<select id="TodoListCompleted" resultType="com.project.domain.TodoVO">
+		select * from todo_info where userno=#{userNo} and projectNo=#{projectNo} and state=#{state}
+	</select>
+	
+	<select id="TodoListNotCompleted" resultType="com.project.domain.TodoVO">
+		select * from todo_info where userno=#{userNo} and projectNo=#{projectNo} and state=#{state}
+	</select>
+	
+	<select id="TodoListExpired" resultType="com.project.domain.TodoVO">
+		select * from todo_info where userno=#{userNo} and projectNo=#{projectNo} and state=#{state}
+	</select>
+
+
+
+</mapper>
+
+
