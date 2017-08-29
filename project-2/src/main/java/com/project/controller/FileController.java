@@ -1,6 +1,11 @@
 package com.project.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.domain.ProjectVO;
@@ -35,8 +42,24 @@ public class FileController {
     
     //게시글 작성(POST)
     @RequestMapping(value="/post",method=RequestMethod.POST)
-    public String write(@ModelAttribute("ProjectVO") ProjectVO project) throws Exception{
+    public String write(@ModelAttribute("ProjectVO") ProjectVO project, MultipartHttpServletRequest request) throws Exception{
  
+    	
+    	MultipartFile uploadFile = request.getFile("uploadFile");
+    	if(uploadFile.isEmpty()){
+    	    System.out.println("## 비어있는 파일입니다!!");
+    	  }
+    	String fname = uploadFile.getOriginalFilename();
+    	System.out.println(fname);
+    	System.out.println("왜안돼..");
+        
+    	/*if (fname.equals("")) {
+            project.setFname(null);
+        } else {
+        	project.setFname(fname);
+        	project.getuploadFile().transferTo(new File("c:/Users/ss/upload/" + fname));
+        }*/
+
         projectMapper.fileInsert(project);
         
         return "redirect:/file";

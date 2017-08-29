@@ -14,7 +14,7 @@
 <body>
     <h3>파일 작성</h3>
     <div style="padding : 30px;">
-        <form method="POST" action="/project-2/file/post">
+        <form method="POST" action="/project-2/file/post" enctype="multipart/form-data">
          <div class="form-group">
             <label>제목</label>
             <input type="text" name="fileName" class="form-control">
@@ -23,10 +23,11 @@
             <label>작성자</label>
             <input type="text" name="fileWriter" class="form-control">
           </div>
-          <!-- <div class="form-group">
-         	 <input type="file" name="file_name" class="form-control">
+          <div class="form-group">
+          <label>파일 첨부</label>
+         	 	파일 : <input type="file" name="uploadFile" class="form-control">
         	 <br/><br/>
-          </div> -->
+          </div>
           <button type="submit" class="btn btn-default">작성</button>
         </form>
     </div>

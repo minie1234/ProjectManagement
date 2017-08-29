@@ -2,6 +2,8 @@ package com.project.domain;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProjectVO {
 	private int no;
 	private String team;
@@ -16,6 +18,9 @@ public class ProjectVO {
 	private String fileName;
 	private String fileWriter;
 	private Date fileDate;
+	
+	private String fname;
+    private MultipartFile uploadFile;
 	
 
 	public int getNo() {
@@ -117,6 +122,19 @@ public class ProjectVO {
 	}
 	
 	
+	public String getFname() {
+        return fname;
+    }
+    public void setFname(String fname) {
+        this.fname = fname;
+    }	
+    public MultipartFile getuploadFile() {
+        return uploadFile;
+    }
+    public void setuploadFile(MultipartFile uploadFile) {
+        this.uploadFile = uploadFile;
+    }
+    
 	
 
 }
