@@ -44,14 +44,14 @@ public class FileController {
     @RequestMapping(value="/post",method=RequestMethod.POST)
     public String write(@ModelAttribute("ProjectVO") ProjectVO project, MultipartHttpServletRequest request) throws Exception{
  
-		MultipartFile report = request.getFile("report");
-		String ff= report.getOriginalFilename();		
-		String fileName = ff.substring(ff.lastIndexOf('\\')+1);
+		MultipartFile file = request.getFile("report");
+		String path= file.getOriginalFilename();		
+		String fileName = path.substring(path.lastIndexOf('\\')+1);
 		
-		File file = new File("c:\\Users\\ss\\Desktop\\upload\\"+fileName);
+		File savePath = new File("c:\\Users\\ss\\Desktop\\upload\\"+fileName);
 		
 		try {
-            report.transferTo(file);
+			file.transferTo(savePath);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
