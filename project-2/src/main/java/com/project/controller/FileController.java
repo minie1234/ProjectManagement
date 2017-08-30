@@ -44,21 +44,18 @@ public class FileController {
     @RequestMapping(value="/post",method=RequestMethod.POST)
     public String write(@ModelAttribute("ProjectVO") ProjectVO project, MultipartHttpServletRequest request) throws Exception{
  
-    	
-    	MultipartFile uploadFile = request.getFile("uploadFile");
-    	if(uploadFile.isEmpty()){
-    	    System.out.println("## 비어있는 파일입니다!!");
-    	  }
-    	String fname = uploadFile.getOriginalFilename();
-    	System.out.println(fname);
-    	System.out.println("왜안돼..");
-        
-    	/*if (fname.equals("")) {
-            project.setFname(null);
-        } else {
-        	project.setFname(fname);
-        	project.getuploadFile().transferTo(new File("c:/Users/ss/upload/" + fname));
-        }*/
+		MultipartFile report = request.getFile("report");
+		String ff= report.getOriginalFilename();		
+		String fileName = ff.substring(ff.lastIndexOf('\\')+1);
+		
+		File file = new File("c:\\Users\\ss\\Desktop\\upload\\"+fileName);
+		
+		try {
+            report.transferTo(file);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         projectMapper.fileInsert(project);
         

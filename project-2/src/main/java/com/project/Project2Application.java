@@ -47,22 +47,4 @@ public class Project2Application {
         return filter;
     }
 
-    
-    
-    // multipartResolver
-    
-    /*@Bean
-    public MultipartResolver multipartResolver() {
-     CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-     resolver.setMaxInMemorySize(100000000);
-     resolver.setMaxUploadSize(200000000);
-     return resolver;
-    }*/
-    
-    @Bean
-    public CommonsMultipartResolver multipartResolver() {
-        CommonsMultipartResolver resolver=new CommonsMultipartResolver();
-        resolver.setDefaultEncoding("utf-8");
-        return resolver;
-    }
 }

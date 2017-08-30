@@ -25,7 +25,7 @@
           </div>
           <div class="form-group">
           <label>파일 첨부</label>
-         	 	파일 : <input type="file" name="uploadFile" class="form-control">
+         	 	파일 : <input type="file" name="report" class="form-control">
         	 <br/><br/>
           </div>
           <button type="submit" class="btn btn-default">작성</button>
