@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE>
 <html>
 <title>Project Management</title>
@@ -9,6 +11,35 @@
 	href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+	  	todoListCompleated = Number("${fn:length(todoListCompleted)}");
+    	todoListNotCompleted = Number("${fn:length(todoListNotCompleted)}");
+    	todoListExpired = Number("${fn:length(todoListExpired)}");
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'count'],
+          ['완료됨', todoListCompleated],
+          ['마감일 지남', todoListNotCompleted],
+          ['계획됨', todoListExpired],
+        ]);
+
+        var options = {
+          pieHole: 0.8,
+          colors:['rgb(39, 182, 186)', 'rgb(233, 94, 81)', 'rgb(255, 176, 36)'],
+          label: 'none',
+          legend: 'none',
+          pieSliceText: 'none',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+</script>
+
 <style>
 html, body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Roboto", sans-serif
@@ -149,18 +180,37 @@ html, body, h1, h2, h3, h4, h5, h6 {
 		<section style="width:100%; height: 100px; background-color: #ffffff">
 			<section style="padding: 20px; width: 100%; height: 100%">
 				<section style="width:100%; height: 45%; display: flex;">
-					<section><strong>프로젝트 개요</strong></section>
-					<section style="width:120px;"></section>
-					<section><i class="fa fa-circle-o" style="color: rgb(39, 182, 186)"></i>완료됨  0% (0개 업무)</section>
-					<section style="width:80px;"></section>
-					<section><i class="fa fa-circle-o" style="color: rgb(233, 94, 81)"></i>마감일 지남  0% (0개 업무)</section>
-					<section style="width:80px;"></section>
-					<section><i class="fa fa-circle-o" style="color: rgb(255, 176, 36)"></i>계획됨  0% (0개 업무)</section>
+					<div><strong>프로젝트 개요</strong></div>
+					<div style="width:120px;"></div>
+					<div><i class="fa fa-circle-o" style="color: rgb(39, 182, 186); margin-right: 5px"></i>
+					완료됨 ${fn:length(todoListCompleted)/todoListTotalSize * 100}% (${fn:length(todoListCompleted)}개 업무)</div>
+					<div style="width:80px;"></div>
+					<div><i class="fa fa-circle-o" style="color: rgb(233, 94, 81); margin-right: 5px"></i>
+					마감일 지남  ${fn:length(todoListNotCompleted)/todoListTotalSize * 100}% (${fn:length(todoListNotCompleted)}개 업무)</div>
+					<div style="width:80px;"></div>
+					<div><i class="fa fa-circle-o" style="color: rgb(255, 176, 36); margin-right: 5px"></i>
+					계획됨  ${fn:length(todoListExpired)/todoListTotalSize * 100}% (${fn:length(todoListExpired)}개 업무)</div>
 				</section>
 				<section style="width:100%; height: 10%"></section>
 				<section style="width:100%; height: 45%">
 					<div class="w3-cell-row">
-						<div class="w3-container w3-cell" style="width:100%; background-color: #d4d6db"><p style="height:100%;"></p></div>
+						<c:choose>
+							<c:when test="${todoListTotalSize == 0}">
+								<div class="w3-container w3-cell" style="width:100%; background-color: #d4d6db"><p style="height:100%;"></p></div>
+							</c:when>
+							<c:otherwise>
+								<c:if test="${fn:length(todoListCompleted) != 0}">
+									<div class="w3-container w3-cell" style="width:${fn:length(todoListCompleted)/todoListTotalSize * 100}%; background-color: rgb(39, 182, 186)"><p style="height:100%;"></p></div>
+								</c:if>
+								<c:if test="${fn:length(todoListNotCompleted) != 0}">
+									<div class="w3-container w3-cell" style="width:${fn:length(todoListNotCompleted)/todoListTotalSize * 100}%; background-color: rgb(233, 94, 81)"><p style="height:100%;"></p></div>
+								</c:if>
+								<c:if test="${fn:length(todoListExpired) != 0}">
+									<div class="w3-container w3-cell" style="width:${fn:length(todoListExpired)/todoListTotalSize * 100}%; background-color: rgb(255, 176, 36)"><p style="height:100%;"></p></div>
+								</c:if>							
+							</c:otherwise>
+						</c:choose>
+						
 					</div>
 				</section>
 			</section>
@@ -169,17 +219,42 @@ html, body, h1, h2, h3, h4, h5, h6 {
 		<section style="width:100%; height: 15px;"></section>
 		
 		<!-- 파이차트 자리 -->
-		<section style="width:100%; height: 450px; display: flex;">
-			<section style="width:32%; height: 100%; background-color: #ffffff">
-			</section>
-			<section style="width:2%; height: 100%;"></section>
-			<section style="width:32%; height: 100%; background-color: #ffffff">
-			</section>
-			<section style="width:2%; height: 100%;"></section>
-			<section style="width:32%; height: 100%; background-color: #ffffff">
+		<section style="width:100%; height: 180px;">
+			<section style="width:100%; height: 100%; background-color: #ffffff">
+				<section style="width: 100%; height: 100%; display: flex;">
+					<div style="padding: 20px;">
+						<strong>나에게 배정된 업무</strong>
+					</div>
+					<div>
+    					<div id="donutchart" style="width: 500px; height: 180px;"></div>
+					</div>
+					<div>
+						<div style="height: 40px"></div>
+    					<div><i class="fa fa-circle-o" style="color: rgb(39, 182, 186); margin-right: 5px"></i>
+						완료됨  ${fn:length(todoListCompleted)/todoListTotalSize * 100}% (${fn:length(todoListCompleted)}개 업무)</div>
+						<div style="height: 15px"></div>
+						<div><i class="fa fa-circle-o" style="color: rgb(233, 94, 81); margin-right: 5px"></i>
+						마감일 지남  ${fn:length(todoListNotCompleted)/todoListTotalSize * 100}% (${fn:length(todoListNotCompleted)}개 업무)</div>
+						<div style="height: 15px"></div>
+						<div><i class="fa fa-circle-o" style="color: rgb(255, 176, 36); margin-right: 5px"></i>
+						계획됨  ${fn:length(todoListExpired)/todoListTotalSize * 100}% (${fn:length(todoListExpired)}개 업무)</div>
+    				</div>
+				</section>
 			</section>
 		</section>
 		
+		<section style="width:100%; height: 15px;"></section>
+		
+		<!-- 번업  -->
+		<section style="width:100%; height: 450px; display: flex;">
+			<section style="width:100%; height: 100%; background-color: #ffffff">
+				<section style="padding: 20px; width: 100%; height: 100%">
+					<div>
+						<strong>번업</strong>
+					</div>
+				</section>
+			</section>
+		</section>
 		<section style="width:100%; height: 50px;"></section>
 		
 	</section>
