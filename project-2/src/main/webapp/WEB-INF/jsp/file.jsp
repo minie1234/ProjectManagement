@@ -20,6 +20,7 @@
             <th>제목</th>
             <th>작성자</th>
             <th>작성날짜</th>
+            <th>첨부파일</th>
         </tr>
         <c:forEach var="file" items="${list}">
         <tr>
@@ -27,7 +28,7 @@
             <td><a href="/project-2/file/${file.fileNo}">${file.fileName}</a></td>
             <td>${file.fileWriter}</td>
             <td><fmt:formatDate value="${file.fileDate}" pattern="MM/ dd" /></td>
-
+			<td>${file.report}</td>
         </tr>
         </c:forEach>
     </table>

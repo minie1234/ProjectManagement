@@ -41,26 +41,47 @@ public class FileController {
     }
     
     //게시글 작성(POST)
-    @RequestMapping(value="/post",method=RequestMethod.POST)
-    public String write(@ModelAttribute("ProjectVO") ProjectVO project, MultipartHttpServletRequest request) throws Exception{
- 
-		MultipartFile file = request.getFile("report");
-		String path= file.getOriginalFilename();		
-		String fileName = path.substring(path.lastIndexOf('\\')+1);
+    @RequestMapping(value="/post", method=RequestMethod.POST)
+    public String write2(@ModelAttribute("ProjectVO") ProjectVO project, MultipartHttpServletRequest request) throws Exception{
+    	
+    	MultipartFile multi = request.getFile("report");
+		System.out.println(multi);
 		
-		File savePath = new File("c:\\Users\\ss\\Desktop\\upload\\"+fileName);
+		String f = multi.getName();
+		System.out.println(f);
 		
-		try {
-			file.transferTo(savePath);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        projectMapper.fileInsert(project);
-        
-        return "redirect:/file";
+		String fileName = request.getParameter("fileName");
+		System.out.println(fileName);
+		
+		String ff= multi.getOriginalFilename();
+		
+		if (ff.equals("")) {
+			 System.out.println("out out");
+			 
+			 projectMapper.fileInsert(project);
+			 
+		    } else {
+		    	String report = ff.substring(ff.lastIndexOf('\\')+1); 
+		    	System.out.println(report);
+		    	
+		    	//project.setReport(multi);
+		    	
+				File file = new File("c:\\Users\\ss\\Desktop\\upload\\"+report);
+		    	
+		        multi.transferTo(file);
+		        
+		        projectMapper.fileInsert(project);
+		        
+		        projectMapper.fileInsert2(report, fileName);
+		    }
+		
+    	
+    	
+    	return "redirect:/file";
     }
+    
+    
+    
     
   //게시글 상세
     @RequestMapping(value="/{fileNo}",method=RequestMethod.GET)

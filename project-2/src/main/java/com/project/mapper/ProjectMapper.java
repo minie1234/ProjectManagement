@@ -17,6 +17,9 @@ public interface ProjectMapper {
 	//파일 글작성
     public void fileInsert(ProjectVO project)throws Exception;
     
+  //파일 글작성2
+    public void fileInsert2(String report, String fileName)throws Exception;
+    
     //파일 글목록
     public List<ProjectVO> fileList()throws Exception;
     

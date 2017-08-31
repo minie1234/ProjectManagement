@@ -28,6 +28,10 @@
         <span><fmt:formatDate value="${file.fileDate}" pattern="yyyy/ MM/ dd HH:mm" /></span>
       </div>
       <div class="form-group">
+        <label>첨부파일</label>
+        <span>${file.report}</span>
+      </div>
+      <div class="form-group">
           <input type="button" value="수정" onclick='location.href="/project-2/file/post/${file.fileNo}"'>
           <form:form action="/project-2/file/post/${file.fileNo}" method="DELETE">
               <input type="submit" value="삭제">

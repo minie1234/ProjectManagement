@@ -19,9 +19,7 @@ public class ProjectVO {
 	private String fileWriter;
 	private Date fileDate;
 	
-	private String fname;
-    private MultipartFile uploadFile;
-	
+	private String report;
 
 	public int getNo() {
 		return no;
@@ -80,6 +78,7 @@ public class ProjectVO {
 	}
 
 	public String getState() {
+		
 		return state;
 	}
 
@@ -121,20 +120,12 @@ public class ProjectVO {
 		this.fileDate = fileDate;
 	}
 	
+	public String getReport() {
+		return report;
+	}
 	
-	public String getFname() {
-        return fname;
-    }
-    public void setFname(String fname) {
-        this.fname = fname;
-    }	
-    public MultipartFile getuploadFile() {
-        return uploadFile;
-    }
-    public void setuploadFile(MultipartFile uploadFile) {
-        this.uploadFile = uploadFile;
-    }
-    
+	public void setReport(String report) {
+		this.report = report;
+	}
 	
-
 }

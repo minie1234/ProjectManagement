@@ -16,10 +16,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> -->
 	
 	<insert id="fileInsert" parameterType="com.project.domain.ProjectVO">
-        insert into file_info
+        insert into file_info (fileNo,fileName,fileWriter,fileDate)
             values
         (#{fileNo},#{fileName},#{fileWriter},now())
-    </insert>	
+    </insert>
+   <insert id="fileInsert2" parameterType="com.project.controller.FileController">
+       update file_info set report= #{report} where fileName = #{fileName}
+    </insert>
  
   <select id="fileList" resultType="com.project.domain.ProjectVO">
         select * from file_info
