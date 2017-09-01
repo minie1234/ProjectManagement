@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -42,7 +43,11 @@ public class FileController {
     
     //게시글 작성(POST)
     @RequestMapping(value="/post", method=RequestMethod.POST)
-    public String write2(@ModelAttribute("ProjectVO") ProjectVO project, MultipartHttpServletRequest request) throws Exception{
+    public String write2(@RequestParam("fileName") String fileName, @RequestParam("fileWriter") String fileWriter, 
+    		MultipartHttpServletRequest request) throws Exception{
+    	ProjectVO project = new ProjectVO();
+    	project.setFileName(fileName);
+    	project.setFileWriter(fileWriter);
     	
     	MultipartFile multi = request.getFile("report");
 		System.out.println(multi);
@@ -50,10 +55,8 @@ public class FileController {
 		String f = multi.getName();
 		System.out.println(f);
 		
-		String fileName = request.getParameter("fileName");
-		System.out.println(fileName);
-		
 		String ff= multi.getOriginalFilename();
+		System.out.println(ff);
 		
 		if (ff.equals("")) {
 			 System.out.println("out out");
@@ -63,16 +66,15 @@ public class FileController {
 		    } else {
 		    	String report = ff.substring(ff.lastIndexOf('\\')+1); 
 		    	System.out.println(report);
+		    	//request.setAttribute(report,multi);
 		    	
-		    	//project.setReport(multi);
+		    	project.setReport(report);
 		    	
 				File file = new File("c:\\Users\\ss\\Desktop\\upload\\"+report);
 		    	
 		        multi.transferTo(file);
 		        
 		        projectMapper.fileInsert(project);
-		        
-		        projectMapper.fileInsert2(report, fileName);
 		    }
 		
     	

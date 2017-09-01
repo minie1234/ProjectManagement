@@ -153,7 +153,7 @@ html, body, h1, h2, h3, h4, h5, h6 {
     <button class="w3-bar-item w3-button w3-theme-l1" style="float : right;" onclick="location.href='/project-2/file/post'">작성</button>
     <table class="table" cellspacing="30px" bgcolor = "#ffffff" width="100%">
         <tr>
-            <th>No</th>
+            <th>No2</th>
             <th>제목</th>
             <th>작성자</th>
             <th>작성날짜</th>
@@ -165,7 +165,8 @@ html, body, h1, h2, h3, h4, h5, h6 {
             <td><a href="/project-2/file/${file.fileNo}">${file.fileName}</a></td>
             <td>${file.fileWriter}</td>
             <td><fmt:formatDate value="${file.fileDate}" pattern="MM/ dd" /></td>
-			<td>${file.report}</td>
+			<td><a href="/project-2/file/down.do?report=${file.report}">${file.report}</a></td>
+        <%-- path=${ff}&report=${file.report} --%>
         </tr>
         </c:forEach>
     </table>
