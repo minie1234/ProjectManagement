@@ -171,15 +171,10 @@ html, body, h1, h2, h3, h4, h5, h6 {
 	<section style="margin-left:220px; margin-right: 20px; width:80%; height: 100%;">
 		<section style="width:100%; height: 80px;"></section>
 		
-		<section style="width:100%; height: 100px; background-color: #ffffff">
-		</section>
-		
-		<section style="width:100%; height: 15px;"></section>
-		
 		<!-- 프로젝트 개요 -->
-		<section style="width:100%; height: 100px; background-color: #ffffff">
+		<section style="width:100%; height: 200px; background-color: #ffffff">
 			<section style="padding: 20px; width: 100%; height: 100%">
-				<section style="width:100%; height: 45%; display: flex;">
+				<section style="padding-top:30px; width:100%; height: 45%; display: flex;">
 					<div><strong>프로젝트 개요</strong></div>
 					<div style="width:120px;"></div>
 					<div><i class="fa fa-circle-o" style="color: rgb(39, 182, 186); margin-right: 5px"></i>
@@ -210,7 +205,6 @@ html, body, h1, h2, h3, h4, h5, h6 {
 								</c:if>							
 							</c:otherwise>
 						</c:choose>
-						
 					</div>
 				</section>
 			</section>
@@ -219,17 +213,17 @@ html, body, h1, h2, h3, h4, h5, h6 {
 		<section style="width:100%; height: 15px;"></section>
 		
 		<!-- 파이차트 자리 -->
-		<section style="width:100%; height: 180px;">
+		<section style="width:100%; height: 250px;">
 			<section style="width:100%; height: 100%; background-color: #ffffff">
 				<section style="width: 100%; height: 100%; display: flex;">
 					<div style="padding: 20px;">
 						<strong>나에게 배정된 업무</strong>
 					</div>
 					<div>
-    					<div id="donutchart" style="width: 500px; height: 180px;"></div>
+    					<div id="donutchart" style="width: 500px; height: 250px;"></div>
 					</div>
 					<div>
-						<div style="height: 40px"></div>
+						<div style="height: 75px"></div>
     					<div><i class="fa fa-circle-o" style="color: rgb(39, 182, 186); margin-right: 5px"></i>
 						완료됨  ${fn:length(todoListCompleted)/todoListTotalSize * 100}% (${fn:length(todoListCompleted)}개 업무)</div>
 						<div style="height: 15px"></div>
@@ -239,19 +233,6 @@ html, body, h1, h2, h3, h4, h5, h6 {
 						<div><i class="fa fa-circle-o" style="color: rgb(255, 176, 36); margin-right: 5px"></i>
 						계획됨  ${fn:length(todoListExpired)/todoListTotalSize * 100}% (${fn:length(todoListExpired)}개 업무)</div>
     				</div>
-				</section>
-			</section>
-		</section>
-		
-		<section style="width:100%; height: 15px;"></section>
-		
-		<!-- 번업  -->
-		<section style="width:100%; height: 450px; display: flex;">
-			<section style="width:100%; height: 100%; background-color: #ffffff">
-				<section style="padding: 20px; width: 100%; height: 100%">
-					<div>
-						<strong>번업</strong>
-					</div>
 				</section>
 			</section>
 		</section>
