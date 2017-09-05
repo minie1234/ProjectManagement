@@ -9,6 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user_info where email=#{email} and password=#{password}
 	</select>
 	
+	<insert id="insertUser" parameterType="com.project.domain.UserVO">
+		insert into user_info (email,name,password,position)
+		values
+		(#{email},#{name},#{password},#{position})
+	</insert>
+	
 </mapper>
 
 

@@ -188,19 +188,25 @@ span.psw {
 	<!-- Login -->
 	
 	<section style="margin-left:220px; margin-right: 20px; width:80%; height: 100%;">
-		<section style="width:100%; height: 120px;"></section>
-		<h2 align="center">Login Form</h2>
+		<section style="width:100%; height: 30px;"></section>
+		<h2 align="center">Sign Up Form</h2>
 		<div align="center">
-			<form action="login/select" method="post" style="width: 500px; height: 290px">
+			<form action="signUp/insert" method="post" style="width: 500px; height: 500px">
 				<div class="container">
-			    	<div align="left"><label><b>Username</b></label></div>
-			    	<input type="text" placeholder="Enter Username" name="email" required>
+			    	<div align="left"><label><b>Email</b></label></div>
+			    	<input type="text" placeholder="Enter Email" name="email">
 			
 			    	<div align="left"><label><b>Password</b></label></div>
-			    	<input type="password" placeholder="Enter Password" name="password" required>
-			        
-			    	<button type="submit">Login</button>
-			    	<div align="right"><a href="signUp">Sign up</div>
+			    	<input type="password" placeholder="Enter Password" name="password">
+			    	
+			    	<div align="left"><label><b>Name</b></label></div>
+			    	<input type="text" placeholder="Enter Name" name="name">
+			    	
+			    	<div align="left"><label><b>Position</b></label></div>
+			    	<input type="text" placeholder="Enter Position" name="position">
+			    	
+			    	<button type="submit">Sign Up</button>
+			    	<button onclick="href='login'">Cencel</button>
 			  	</div>
 			</form>
 		</div>

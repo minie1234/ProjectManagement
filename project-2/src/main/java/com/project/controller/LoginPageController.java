@@ -2,6 +2,8 @@ package com.project.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,8 @@ public class LoginPageController {
 	}
 	
 	@RequestMapping("/login/select")
-	public ModelAndView selectLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
+	public ModelAndView selectLogin(@RequestParam("email") String email, @RequestParam("password") String password
+			, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		try {
 			List<UserVO> userList = userMapper.selectUser(email, password);
@@ -31,7 +34,7 @@ public class LoginPageController {
 				mv.setViewName("redirect:/login");
 			}else {
 				mv.setViewName("redirect:/analysis");
-				mv.addObject("userNo", userList.get(0).getNo());
+				session.setAttribute("USER", userList.get(0));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

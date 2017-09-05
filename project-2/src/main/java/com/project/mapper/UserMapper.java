@@ -8,6 +8,7 @@ import com.project.domain.UserVO;
 
 public interface UserMapper {
 
-	public List<UserVO> selectUser(@Param("email") String email, @Param("password") String password) throws Exception; // 추가
+	public List<UserVO> selectUser(@Param("email") String email, @Param("password") String password) throws Exception;
+	public void insertUser(UserVO user) throws Exception;
 
 }

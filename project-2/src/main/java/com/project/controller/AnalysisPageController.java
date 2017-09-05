@@ -2,15 +2,15 @@ package com.project.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.domain.TodoVO;
+import com.project.domain.UserVO;
 import com.project.mapper.TodoMapper;
 
 @Controller
@@ -18,12 +18,12 @@ public class AnalysisPageController {
 	@Autowired
 	private TodoMapper todoMapper;
 	
-	@RequestMapping(value="/analysis")
-	public ModelAndView view(HttpServletRequest request) {
+	@RequestMapping("/analysis")
+	public ModelAndView view(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("analysis");
 		
-		int no = Integer.parseInt(request.getParameter("userNo"));
+		int no = ((UserVO)session.getAttribute("USER")).getNo();
 		
 		try {
 			List<TodoVO> todoListCompleted = todoMapper.TodoListCompleted(no, 1, "completed");
