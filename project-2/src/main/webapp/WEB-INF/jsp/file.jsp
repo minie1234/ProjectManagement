@@ -165,7 +165,8 @@ html, body, h1, h2, h3, h4, h5, h6 {
             <td><a href="/project-2/file/${file.fileNo}">${file.fileName}</a></td>
             <td>${file.fileWriter}</td>
             <td><fmt:formatDate value="${file.fileDate}" pattern="MM/ dd" /></td>
-			<td>${file.report}</td>
+			<td><a href="/project-2/file/down.do?report=${file.report}">${file.report}</a></td>
+        <%-- path=${ff}&report=${file.report} --%>
         </tr>
         </c:forEach>
     </table>

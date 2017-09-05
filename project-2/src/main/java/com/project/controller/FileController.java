@@ -1,18 +1,24 @@
 package com.project.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -42,37 +48,30 @@ public class FileController {
     
     //게시글 작성(POST)
     @RequestMapping(value="/post", method=RequestMethod.POST)
-    public String write2(@ModelAttribute("ProjectVO") ProjectVO project, MultipartHttpServletRequest request) throws Exception{
+    public String write2(@RequestParam("fileName") String fileName, @RequestParam("fileWriter") String fileWriter, 
+    		MultipartHttpServletRequest request) throws Exception{
+    	
+    	ProjectVO project = new ProjectVO();
+    	project.setFileName(fileName);
+    	project.setFileWriter(fileWriter);
     	
     	MultipartFile multi = request.getFile("report");
-		System.out.println(multi);
-		
 		String f = multi.getName();
-		System.out.println(f);
-		
-		String fileName = request.getParameter("fileName");
-		System.out.println(fileName);
-		
 		String ff= multi.getOriginalFilename();
 		
-		if (ff.equals("")) {
-			 System.out.println("out out");
-			 
+		if (ff.equals("")) { 
 			 projectMapper.fileInsert(project);
 			 
 		    } else {
 		    	String report = ff.substring(ff.lastIndexOf('\\')+1); 
-		    	System.out.println(report);
 		    	
-		    	//project.setReport(multi);
+		    	project.setReport(report);
 		    	
 				File file = new File("c:\\Users\\ss\\Desktop\\upload\\"+report);
 		    	
 		        multi.transferTo(file);
 		        
 		        projectMapper.fileInsert(project);
-		        
-		        projectMapper.fileInsert2(report, fileName);
 		    }
 		
     	
@@ -119,5 +118,36 @@ public class FileController {
         return "redirect:/file";
     }
 
+    
+    
+    @RequestMapping(value = "/down.do")
+	public void downloadCSV(HttpServletResponse response, HttpServletRequest request) throws IOException {
+ 
+    	File downloadFile = new File("c:\\Users\\ss\\Desktop\\upload\\" + request.getParameter("report"));
+		
+		response.setContentType("text/csv");
+		String reportName = "CSV_Report_Name.csv";
+		response.setHeader("Content-disposition", "attachment;filename="+reportName);
+		
+		String fileName = null;
+		fileName = new String(downloadFile.getName().getBytes("utf-8"));
+		response.setHeader("Content-Disposition", "attachment; filename=\""
+                + fileName + "\";");
+        response.setHeader("Content-Transfer-Encoding", "binary");
+        OutputStream out = response.getOutputStream();
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(downloadFile);
+            FileCopyUtils.copy(fis, out); // 스프링 클래스.
+        } finally {
+            if (fis != null)
+                try {
+                    fis.close();
+                } catch (IOException ex) {
+                }
+        }
+        out.flush();
+    }
+    
 	
 }
