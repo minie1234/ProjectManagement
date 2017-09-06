@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="SchedulerMapper">
+	<select id="project_and_team" resultType="map">
+		select 	distinct project_info.title, team 
+		from 	project_info 
+		left join 	todo_info 
+		on(project_info.no = todo_info.projectno)
+		order by 	title
+	</select>
+	
+	<select id="todo_info_list" resultType="com.project.domain.TodoVO2">
+		select	todo_info.no, todo_info.team, todo_info.task, 
+				(select name from user_info where no = todo_info.userno) as todowriter, 
+				(select title from project_info where no = todo_info.projectno) as projecttitle, 
+				todo_info.startdate, todo_info.enddate, todo_info.state, 
+				(select filename from file_info where fileno = todo_info.fileno) as filename,
+				(select filedate from file_info where fileno = todo_info.fileno) as filedate,
+				(select name from user_info where no = (select filewriter from file_info where fileno = todo_info.fileno)) as filewriter 
+		from 	todo_info
+	</select>
+	
+	<select id="todo_info_list_projectname" resultType="map">
+		select	todo_info.no, todo_info.team, todo_info.task, 
+				(select name from user_info where no = todo_info.userno) as todowriter, 
+				(select title from project_info where no = todo_info.projectno) as projecttitle, 
+				todo_info.startdate, todo_info.enddate, todo_info.state, 
+				(select filename from file_info where fileno = todo_info.fileno) as filename,
+				(select filedate from file_info where fileno = todo_info.fileno) as filedate,
+				(select name from user_info where no = (select filewriter from file_info where fileno = todo_info.fileno)) as filewriter 
+		from 	todo_info
+		where 	projectno = (select no from project_info where title = #{name})
+	</select>
+	
+	<select id="todo_info_list_team" resultType="map">
+		select	todo_info.no, todo_info.team, todo_info.task, 
+				(select name from user_info where no = todo_info.userno) as todowriter, 
+				(select title from project_info where no = todo_info.projectno) as projecttitle, 
+				todo_info.startdate, todo_info.enddate, todo_info.state, 
+				(select filename from file_info where fileno = todo_info.fileno) as filename,
+				(select filedate from file_info where fileno = todo_info.fileno) as filedate,
+				(select name from user_info where no = (select filewriter from file_info where fileno = todo_info.fileno)) as filewriter 
+		from 	todo_info
+		where 	projectNo = (select no from project_info where title = #{parentName}) 
+		and 	team = #{name}
+	</select>
+
+	<select id="project_info_project_list" resultType="string">
+		select 	distinct title 
+		from 	project_info
+	</select>
+
+	<select id="todo_info_team_list" resultType="string">
+		select 	distinct team 
+		from 	todo_info
+	</select>
+
+	<update id="update_todo_info">
+		update 	todo_info
+		set 	team = #{team},
+				task = #{title},
+				<!-- userno = (select no from user_info where name = #{todowriter}), -->
+				projectno = (select no from project_info where title = #{projecttitle}),
+				startdate = #{start},
+				enddate = #{end},
+				state = #{state}<!-- ,
+				filename = #{filename},
+				writedate = #{writedate},
+				filewriter = #{filewriter} -->
+		where	no = #{no}
+	</update>
+	
+</mapper>
+
+
