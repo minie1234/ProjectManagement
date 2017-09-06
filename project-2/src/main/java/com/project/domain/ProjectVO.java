@@ -3,6 +3,7 @@ package com.project.domain;
 import java.io.File;
 import java.util.Date;
 
+
 public class ProjectVO {
 	private int no;
 	private String team;
@@ -17,7 +18,6 @@ public class ProjectVO {
 	private String fileName;
 	private String fileWriter;
 	private Date fileDate;
-	
 	private String report;
 
 	public int getNo() {

@@ -56,21 +56,28 @@ public class FileController {
     	project.setFileWriter(fileWriter);
     	
     	MultipartFile multi = request.getFile("report");
-		String f = multi.getName();
-		String ff= multi.getOriginalFilename();
 		
-		if (ff.equals("")) { 
+		String f = multi.getName();
+		String multifile = multi.getOriginalFilename();
+		
+		if (multifile.equals("")) {
 			 projectMapper.fileInsert(project);
 			 
 		    } else {
-		    	String report = ff.substring(ff.lastIndexOf('\\')+1); 
+		    	String report = multifile.substring(multifile.lastIndexOf('\\')+1); 
+		    	System.out.println(report);
 		    	
 		    	project.setReport(report);
 		    	
-				File file = new File("c:\\Users\\ss\\Desktop\\upload\\"+report);
-		    	
-		        multi.transferTo(file);
-		        
+		    	String folder = "c:\\upload\\";	
+				File dir = new File(folder);
+				if (!dir.isDirectory()) {
+		            dir.mkdirs();
+		        }
+				
+				File file = new File("c:\\upload\\" + report);
+				multi.transferTo(file);
+
 		        projectMapper.fileInsert(project);
 		    }
 		
@@ -118,13 +125,12 @@ public class FileController {
         return "redirect:/file";
     }
 
-    
-    
-    @RequestMapping(value = "/down.do")
+    @RequestMapping(value="/down.do", method=RequestMethod.GET)
 	public void downloadCSV(HttpServletResponse response, HttpServletRequest request) throws IOException {
- 
-    	File downloadFile = new File("c:\\Users\\ss\\Desktop\\upload\\" + request.getParameter("report"));
-		
+    	
+    	File downloadFile = new File("c:\\upload\\" + request.getParameter("report"));
+    	ProjectVO project = new ProjectVO();    	
+    	
 		response.setContentType("text/csv");
 		String reportName = "CSV_Report_Name.csv";
 		response.setHeader("Content-disposition", "attachment;filename="+reportName);

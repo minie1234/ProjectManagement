@@ -159,14 +159,18 @@ html, body, h1, h2, h3, h4, h5, h6 {
             <th>작성날짜</th>
             <th>첨부파일</th>
         </tr>
+        
         <c:forEach var="file" items="${list}">
         <tr>
             <td>${file.fileNo}</td>
             <td><a href="/project-2/file/${file.fileNo}">${file.fileName}</a></td>
             <td>${file.fileWriter}</td>
             <td><fmt:formatDate value="${file.fileDate}" pattern="MM/ dd" /></td>
-			<td><a href="/project-2/file/down.do?report=${file.report}">${file.report}</a></td>
+			<td><form method="POST" enctype="multipart/form-data"><a href="/project-2/file/down.do?report=${file.report}">${file.report}</a></form></td>
+			
+        
         <%-- path=${ff}&report=${file.report} --%>
+        
         </tr>
         </c:forEach>
     </table>
